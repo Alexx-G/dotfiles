@@ -86,6 +86,9 @@
   :config
   (setq projectile-switch-project-action 'helm-projectile))
 
+(use-package helm-ag
+  :ensure t)
+
 (use-package elpy
   :ensure t
   :config
@@ -162,4 +165,28 @@
   :ensure t
   :config
   (editorconfig-mode 1))
+
+(use-package clojure-mode
+  :ensure t)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
+
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'smartparens-strict-mode))
+
+(use-package cider
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'smartparens-strict-mode))
 
