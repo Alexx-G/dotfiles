@@ -54,7 +54,10 @@
     "ps" 'helm-projectile-switch-project
     "pg" 'helm-projectile-grep
     "jw" 'evil-ace-jump-word-mode
-    "jj" 'evil-ace-jump-char-mode))
+    "jj" 'evil-ace-jump-char-mode
+    "cc" 'cider-connect
+    "cj" 'cider-jack-in
+    "ces" 'cider-eval-region))
 
 (use-package evil
   :ensure t
