@@ -4,3 +4,4 @@ emacs.d/*
 # Keep configuration/custom fles
 !emacs.d/snippets
 !emacs.d/init.el
+!emacs.d/lisp
