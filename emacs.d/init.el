@@ -44,6 +44,7 @@
 
 ; Modular deps and configs
 (require 'init-evil)
+(require 'init-fonts)
 
 
 ; Deps
@@ -174,4 +175,3 @@
   :ensure t
   :config
   (add-hook 'clojure-mode-hook #'smartparens-strict-mode))
-
