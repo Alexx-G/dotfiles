@@ -42,42 +42,15 @@
 ; Custom associations for major modes
 (add-to-list 'auto-mode-alist '("\\.raml\\'" . yaml-mode))
 
+; Modular deps and configs
+(require 'init-evil)
+
 
 ; Deps
 (use-package material-theme
   :ensure t
   :config 
   (load-theme 'material t))
-
-(use-package evil-leader
-  :ensure t
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key
-    "w"  'save-buffer
-    "bb" 'switch-to-buffer
-    "bp" 'previous-buffer
-    "bn" 'next-buffer
-    "bk" 'kill-this-buffer
-    "bs" 'kill-some-buffers
-    ","  'other-window
-    "o"  'delete-other-windows
-    "g"  'magit-status
-    "ed" 'elpy-goto-definition
-    "pp" 'helm-projectile
-    "ps" 'helm-projectile-switch-project
-    "pg" 'helm-projectile-grep
-    "jw" 'evil-ace-jump-word-mode
-    "jj" 'evil-ace-jump-char-mode
-    "cc" 'cider-connect
-    "cj" 'cider-jack-in
-    "ces" 'cider-eval-region))
-
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode t))
 
 (use-package magit
   :ensure t)
