@@ -1,37 +1,45 @@
-(require 'package)
-(setq inhibit-startup-message t)
+;; Add folder with other init/config files to path
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
+;; Separated file for custom settings
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror)
+
+(require 'init-package)
+
+; Generic appereance
+;; Don't display start-up message and splash screen
+(setq inhibit-splash-screen t
+      inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
-
-; (menu-bar-mode -1)
-(tool-bar-mode -1)
-(setq make-backup-files nil)
-(setq-default indent-tabs-mode nil)
-(column-number-mode t)
-(global-linum-mode t)
-(setq tab-width 4)
 (when (boundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
-(show-paren-mode 1)
 (setq custom-safe-themes t)
 
-(add-to-list
-   'package-archives
-    '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
+; Backup settings
+(defvar backup-dir "~/.emacs.d/backups/")
+(setq backup-directory-alist (list (cons "." backup-dir)))
+(setq make-backup-files nil)
 
-(unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
+; Tabs, line numbers etc
+(setq-default indent-tabs-mode nil)
+(setq tab-width 4)
+(column-number-mode t)
+(global-linum-mode t)
+(show-paren-mode 1)
 
+; Custom associations for major modes
 (add-to-list 'auto-mode-alist '("\\.raml\\'" . yaml-mode))
 
-(eval-when-compile
-  (require 'use-package))
 
+; Deps
 (use-package material-theme
   :ensure t
-  :config
+  :config 
   (load-theme 'material t))
 
 (use-package evil-leader
@@ -176,12 +184,6 @@
   :ensure t
   :config
   (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
-
-
-(use-package aggressive-indent
-  :ensure t
-  :config
-  (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
 
 (use-package smartparens
   :ensure t
