@@ -1,6 +1,7 @@
 # Ignore all of emacs.d, which is mostly compiled/downloaded scripts.
 emacs.d/*
 *.elc
+*.swp
 # Keep configuration/custom fles
 !emacs.d/snippets
 !emacs.d/init.el

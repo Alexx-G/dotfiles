@@ -1,7 +1,9 @@
 (when (window-system)
   (set-language-environment "UTF-8")
   (set-default-coding-systems 'utf-8)
-  (set-default-font "Fira Code" "Fira Code Symbol"))
+  (set-default-font "Fira Code"))
+
+(set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
 
 (use-package
   dash
