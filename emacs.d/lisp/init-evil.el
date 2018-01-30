@@ -36,6 +36,7 @@
     "pp" 'helm-projectile
     "ps" 'helm-projectile-switch-project
     "pg" 'helm-projectile-grep
+    "pic" 'projectile-invalidate-cache
     "jw" 'evil-ace-jump-word-mode
     "jj" 'evil-ace-jump-char-mode
     "cc" 'cider-connect
