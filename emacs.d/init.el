@@ -184,3 +184,8 @@
   :ensure t
   :config
   (add-hook 'clojure-mode-hook #'smartparens-strict-mode))
+
+(use-package js2-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
