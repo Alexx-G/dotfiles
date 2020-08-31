@@ -1,3 +1,5 @@
+export PATH="/usr/local/bin:$PATH"
+
 ## Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -53,25 +55,34 @@ export LESS=-r
 
 
 ## Enable fish style features
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+else
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
 
 zmodload zsh/terminfo
 
-case $(basename "$(cat "/proc/$PPID/comm")") in
+case $(ps -o comm= $PPID) in
   login)
-    	RPROMPT="%{$fg[red]%} %(?..[%?])"
-    	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
+        RPROMPT="%{$fg[red]%} %(?..[%?])"
+        alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
     ;;
   *)
-        source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+          source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        else
+          source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+        fi
         ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
 esac
 
-export EDITOR=/usr/vin/nvim
-export VISUAL=/usr/bin/nvim
+export EDITOR=$(which nvim)
+export VISUAL=$(which nvim)
 
 eval "$(starship init zsh)"
 
